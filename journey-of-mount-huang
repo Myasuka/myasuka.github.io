@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>黄山很美，可惜天公不作美 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="话说这篇博文应该好几天前就发了，可惜最近真是懒啊&#x3D; &#x3D; 国庆七天长假前两天，得知同系的三个人约好一起去黄山玩，连帐篷都买好了，顿时听得我心生向往，于是跟父母说好之后，就跟他们三人一起踏上了冒险的旅途。当然这中间还是有点小插曲的，比如我的火车票一直没买到，最后只能是买了张到镇江的火车票混进候车室，然后无票挤上了去黄山的K161次列车（实际上连那13元的镇江火车票都没有买的必要&#x3D; &#x3D;），最后也没有等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="黄山很美，可惜天公不作美">
+<meta property="og:url" content="http://example.com/journey-of-mount-huang">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="话说这篇博文应该好几天前就发了，可惜最近真是懒啊&#x3D; &#x3D; 国庆七天长假前两天，得知同系的三个人约好一起去黄山玩，连帐篷都买好了，顿时听得我心生向往，于是跟父母说好之后，就跟他们三人一起踏上了冒险的旅途。当然这中间还是有点小插曲的，比如我的火车票一直没买到，最后只能是买了张到镇江的火车票混进候车室，然后无票挤上了去黄山的K161次列车（实际上连那13元的镇江火车票都没有买的必要&#x3D; &#x3D;），最后也没有等">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1pO3U6nrhLpVAKvsl4VTPy4j1sFMZYyQdlrAQSWOj6beQ-ULO0xASUvYAMY-OCOQdi9dFq5V7lO-c/%E4%BA%8C%E5%A4%A9%E4%B8%80%E6%B5%81.jpg?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1p4Va3_P6FfwnYIeAWq2kKySRJfsfmhRBkaCyXajTfsA_ei1Vw-cXwMgbv3amgPsJdDq3RkPienGk/SDC12910.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1p-4Qy4_KT-HHS45vY5csgYJf59jkWn30-fyIOO0Dz5on8nRuBjriq-odMxzqFS_bbVRTfrOLxumA/SDC13045.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1p_i-oVb9LYrS630_fMverhHT-7AgJ49kg9q5zpov7iVZN6WVJ6RhiUJyTh2gREZkr_OY4TJMbOH0/SDC12951.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1p4Va3_P6FfwnGd_f6Fz796C6q-PUrwk7T9tZlXlrO5Mq64GsD74Y8WZYUa1uaNqwIdxJcRlYhFQY/SDC12927.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1pOM1vUN2Zq6UHXP50wRN6Ve1rLho9idzR-5l3nZSM1ypDcb0pf3-kduAHDhEfwzz2b1jeLPNu_4o/SDC12995.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1p-iJ5Rd7TUXzIF198kx4M4d_Rm_6bxtmkEQqUsbpFkD0G7FkYV4lZZDaoQ6G4PKoK3dbktg2aY5w/SDC13002.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1pZEqz-bidbTrJz73KlsmAhFYdsr-6sF9OCmyCgdvhckM830qQh0weQL12ALo8ZSArzsJ-oUbmDz8/SDC13011.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1p13vrUtUY0ndKIvGT5cHH-cTCiUnAMl4NWAX6sVEi6dH0fFNqpeBFfRHlpKr9Ym2K-MC6sBegyds/SDC12922.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1pzYsL0UeVJmJnX6Jz83dkzb-rlmblJtwfPHFHQQeGPWtEAXLn7tesSLHom8ax4uLEvZeB8DExMac/SDC12928.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1pM2EY2JhGt-7kRFQvpvjIOB7M08DbY87kTQR1Js2yeOzSB1z5LY78MPmtFYz3MgomCaM7AMrgm8Y/SDC12993.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1pUq_Q0ceaUL5bzxq-J260fydDzosISHpU01DDgxgYT_ETLlXvLvxn6Pwr4My-cISlQX6Z3YiMPn4/SDC13023.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1pUq_Q0ceaUL6hglX9Q1NEKThGxfnT_zV_w3Vh28BYYZ-njlOgq1r7aSjETBHgDaGjjuWCYhXGGXs/SDC13029.JPG?psid=1">
+<meta property="og:image" content="https://sn2files.storage.live.com/y1p2ZFn10VGUdxAhaIQjCX8UNrTPJizUMzMXWE0mYn9c2QSjJCpEYTTiD336wMHvf22j4I3zlZTnJs/SDC13040.JPG?psid=1">
+<meta property="article:published_time" content="2011-10-09T09:29:01.000Z">
+<meta property="article:modified_time" content="2012-08-03T19:40:07.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="
+- 大学生活
+- 边走边看
+- 黄山">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sn2files.storage.live.com/y1pO3U6nrhLpVAKvsl4VTPy4j1sFMZYyQdlrAQSWOj6beQ-ULO0xASUvYAMY-OCOQdi9dFq5V7lO-c/%E4%BA%8C%E5%A4%A9%E4%B8%80%E6%B5%81.jpg?psid=1">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-黄山很美，可惜天公不作美" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/journey-of-mount-huang" class="article-date">
+  <time class="dt-published" datetime="2011-10-09T09:29:01.000Z" itemprop="datePublished">2011-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      黄山很美，可惜天公不作美
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1pO3U6nrhLpVAKvsl4VTPy4j1sFMZYyQdlrAQSWOj6beQ-ULO0xASUvYAMY-OCOQdi9dFq5V7lO-c/%E4%BA%8C%E5%A4%A9%E4%B8%80%E6%B5%81.jpg?psid=1"><img src="https://sn2files.storage.live.com/y1pO3U6nrhLpVAKvsl4VTPy4j1sFMZYyQdlrAQSWOj6beQ-ULO0xASUvYAMY-OCOQdi9dFq5V7lO-c/%E4%BA%8C%E5%A4%A9%E4%B8%80%E6%B5%81.jpg?psid=1" title="黄山一日游"></a></p>
+<p>话说这篇博文应该好几天前就发了，可惜最近真是懒啊= =</p>
+<p>国庆七天长假前两天，得知同系的三个人约好一起去黄山玩，连帐篷都买好了，顿时听得我心生向往，于是跟父母说好之后，就跟他们三人一起踏上了冒险的旅途。当然这中间还是有点小插曲的，比如我的火车票一直没买到，最后只能是买了张到镇江的火车票混进候车室，然后无票挤上了去黄山的K161次列车（实际上连那13元的镇江火车票都没有买的必要= =），最后也没有等来催我补票的列车员，生平第一次逃票啊……</p>
+<p>那趟火车是晚上10点半从南京发车，第二天凌晨五点多到的黄山，硬座车厢内灯火通明，人来人去，我们就这样一夜没闭眼的到了黄山，不得不说这是一个非常错误的举措，第二天爬1800多米的山完全就受不了了（尤其是对我这种经常熬夜体质差的人 ||）我是四人中爬得罪慢，歇得最多，吃得也最多的人，基本上爬了几十级台阶后就得歇一会（那时我真有冲动花了300来块坐轿子上山）。我们还有一个错误的决定就是我们选择了从后面云谷寺爬上去，本来是到达北海后搭帐篷过夜，然后第二天从前面下来。但可惜人算不如天算……</p>
+<p>5点半到达黄山火车站，真是一个残破狭小的火车站，离我们想像的差距了好多……出了火车站，就是各种大妈围了上来，卖雨衣的，卖地图的，卖手套的，拉客上汽车去黄山的，拉人吃早饭的，拉人去宾馆的，总之各种大妈。当然跟她们讲的一样，有些必需品比如地图雨衣手套什么的在在这里买要比山上便宜不少。在火车站附近坐下来吃了点早饭，实在是困，可惜就是没地方睡，物价还是比较便宜的，即使在火车站旁边，1块5两个芸豆肉包，1块钱一碗粥，1块钱的油条。城市实在有点残破，大致水平就跟江苏中南部的一个县城差不多，实在让我们有点唏嘘不已……</p>
+<p>我们6点一刻坐16元一位的私营汽车（居然没有官方的大巴，估计这也是一个巨大的产业链吧，政府想干预也比较困难）去黄山山脚，又坐了13元的汽车上了非常险峻的盘山公路，早晨8点多到了海拔890米的云谷寺，不知道是因为是后山的原因还是时间比较早的原因，游客并不多，完全没有十一黄金周的感觉<a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1p4Va3_P6FfwnYIeAWq2kKySRJfsfmhRBkaCyXajTfsA_ei1Vw-cXwMgbv3amgPsJdDq3RkPienGk/SDC12910.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1p4Va3_P6FfwnYIeAWq2kKySRJfsfmhRBkaCyXajTfsA_ei1Vw-cXwMgbv3amgPsJdDq3RkPienGk/SDC12910.JPG?psid=1" title="云谷寺"></a></p>
+<p><a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1p4Va3_P6FfwnYIeAWq2kKySRJfsfmhRBkaCyXajTfsA_ei1Vw-cXwMgbv3amgPsJdDq3RkPienGk/SDC12910.JPG?psid=1"></a> <a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1p-4Qy4_KT-HHS45vY5csgYJf59jkWn30-fyIOO0Dz5on8nRuBjriq-odMxzqFS_bbVRTfrOLxumA/SDC13045.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1p-4Qy4_KT-HHS45vY5csgYJf59jkWn30-fyIOO0Dz5on8nRuBjriq-odMxzqFS_bbVRTfrOLxumA/SDC13045.JPG?psid=1" title="云谷寺的门票入口处"></a></p>
+<p> </p>
+<p>地图上一小段的台阶路，结果我们爬了两个小时都没爬到一半，可以说当时我就崩溃了，不想上去又不想下去了，头脑发涨，浑身被汗水湿透，但这样还是不得不说沿途的景色非常漂亮。<a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1p_i-oVb9LYrS630_fMverhHT-7AgJ49kg9q5zpov7iVZN6WVJ6RhiUJyTh2gREZkr_OY4TJMbOH0/SDC12951.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1p_i-oVb9LYrS630_fMverhHT-7AgJ49kg9q5zpov7iVZN6WVJ6RhiUJyTh2gREZkr_OY4TJMbOH0/SDC12951.JPG?psid=1" title="山上的轿子 顺带曝同行其中一人"></a></p>
+<p><a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1p_i-oVb9LYrS630_fMverhHT-7AgJ49kg9q5zpov7iVZN6WVJ6RhiUJyTh2gREZkr_OY4TJMbOH0/SDC12951.JPG?psid=1"></a> <a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1p4Va3_P6FfwnGd_f6Fz796C6q-PUrwk7T9tZlXlrO5Mq64GsD74Y8WZYUa1uaNqwIdxJcRlYhFQY/SDC12927.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1p4Va3_P6FfwnGd_f6Fz796C6q-PUrwk7T9tZlXlrO5Mq64GsD74Y8WZYUa1uaNqwIdxJcRlYhFQY/SDC12927.JPG?psid=1" title="山上石阶"></a></p>
+<p>这时天开始下雨了，我们终于套上了之前在火车站一直不想买但被大妈们缠得受不了而最终以两元一件成交的一次性塑料雨衣。雨下个没完没了，衣服完全被淋湿了，又刮大风，我们还各自背着拎着大包小包（谁让山上吃的实在太贵，10元一瓶农夫山泉），真是煎熬无比啊= =</p>
+<p>中午12点多，我们终于爬上了能吃饭住宿的白鹅山庄，进去之后，我们被那1480元的客房价震撼了，也没舍得吃35元的盒饭，花了5块钱给自带的方便面冲了点热水，顺带说一句，黄山上是禁止卖方便面的，在山上的饭店是买不到的，不过沿途的小蓬还是可以买到的，20元一份康师傅的知心碗连冲开水。当时身上冻得只想吃点热的东西暖暖身。在不大的宾馆大厅，我们就蜷缩在椅子上睡了一小会       下面这张图是同行三人中两人的照片，无码清晰<a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1pOM1vUN2Zq6UHXP50wRN6Ve1rLho9idzR-5l3nZSM1ypDcb0pf3-kduAHDhEfwzz2b1jeLPNu_4o/SDC12995.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1pOM1vUN2Zq6UHXP50wRN6Ve1rLho9idzR-5l3nZSM1ypDcb0pf3-kduAHDhEfwzz2b1jeLPNu_4o/SDC12995.JPG?psid=1" title="困倦的二人"></a></p>
+<p>天气已经不允许搭帐篷了，山上的客房又价格高的惊人，加之又冷又累，我们终于做出了一个艰难的决定：向前等上光明顶后沿原路返回。</p>
+<p>光明顶就是我们最后达到的地方了<a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1p-iJ5Rd7TUXzIF198kx4M4d_Rm_6bxtmkEQqUsbpFkD0G7FkYV4lZZDaoQ6G4PKoK3dbktg2aY5w/SDC13002.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1p-iJ5Rd7TUXzIF198kx4M4d_Rm_6bxtmkEQqUsbpFkD0G7FkYV4lZZDaoQ6G4PKoK3dbktg2aY5w/SDC13002.JPG?psid=1" title="雨中光明顶"></a> <a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1pZEqz-bidbToQYotkSvrPKH3pndDC7s5Me7MpjRxXkIn3MDxZ9k63-lkGoGnReoyPoG9K57xQZwQ/SDC13006.JPG?psid=1"></a> <a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1pZEqz-bidbTrJz73KlsmAhFYdsr-6sF9OCmyCgdvhckM830qQh0weQL12ALo8ZSArzsJ-oUbmDz8/SDC13011.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1pZEqz-bidbTrJz73KlsmAhFYdsr-6sF9OCmyCgdvhckM830qQh0weQL12ALo8ZSArzsJ-oUbmDz8/SDC13011.JPG?psid=1" title="光明顶"></a></p>
+<p>就这样我们原定两天的黄山之行缩水成了一天，本来打算去看的徽州老房子也早早放弃了</p>
+<p>本文最后放点黄山的图片吧<a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1p13vrUtUY0ndKIvGT5cHH-cTCiUnAMl4NWAX6sVEi6dH0fFNqpeBFfRHlpKr9Ym2K-MC6sBegyds/SDC12922.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1p13vrUtUY0ndKIvGT5cHH-cTCiUnAMl4NWAX6sVEi6dH0fFNqpeBFfRHlpKr9Ym2K-MC6sBegyds/SDC12922.JPG?psid=1" title="石阶边的风景"></a></p>
+<p><a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1p13vrUtUY0ndKIvGT5cHH-cTCiUnAMl4NWAX6sVEi6dH0fFNqpeBFfRHlpKr9Ym2K-MC6sBegyds/SDC12922.JPG?psid=1"></a> <a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1pzYsL0UeVJmJnX6Jz83dkzb-rlmblJtwfPHFHQQeGPWtEAXLn7tesSLHom8ax4uLEvZeB8DExMac/SDC12928.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1pzYsL0UeVJmJnX6Jz83dkzb-rlmblJtwfPHFHQQeGPWtEAXLn7tesSLHom8ax4uLEvZeB8DExMac/SDC12928.JPG?psid=1" title="树海"></a></p>
+<p><a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1pM2EY2JhGt-7kRFQvpvjIOB7M08DbY87kTQR1Js2yeOzSB1z5LY78MPmtFYz3MgomCaM7AMrgm8Y/SDC12993.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1pM2EY2JhGt-7kRFQvpvjIOB7M08DbY87kTQR1Js2yeOzSB1z5LY78MPmtFYz3MgomCaM7AMrgm8Y/SDC12993.JPG?psid=1" title="雾色环绕"></a></p>
+<p><a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1pUq_Q0ceaUL5bzxq-J260fydDzosISHpU01DDgxgYT_ETLlXvLvxn6Pwr4My-cISlQX6Z3YiMPn4/SDC13023.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1pUq_Q0ceaUL5bzxq-J260fydDzosISHpU01DDgxgYT_ETLlXvLvxn6Pwr4My-cISlQX6Z3YiMPn4/SDC13023.JPG?psid=1" title="雾中黄山"></a></p>
+<p><a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1pUq_Q0ceaUL6hglX9Q1NEKThGxfnT_zV_w3Vh28BYYZ-njlOgq1r7aSjETBHgDaGjjuWCYhXGGXs/SDC13029.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1pUq_Q0ceaUL6hglX9Q1NEKThGxfnT_zV_w3Vh28BYYZ-njlOgq1r7aSjETBHgDaGjjuWCYhXGGXs/SDC13029.JPG?psid=1" title="雾中景色"></a></p>
+<p><a target="_blank" rel="noopener" href="https://sn2files.storage.live.com/y1p2ZFn10VGUdxAhaIQjCX8UNrTPJizUMzMXWE0mYn9c2QSjJCpEYTTiD336wMHvf22j4I3zlZTnJs/SDC13040.JPG?psid=1"><img src="https://sn2files.storage.live.com/y1p2ZFn10VGUdxAhaIQjCX8UNrTPJizUMzMXWE0mYn9c2QSjJCpEYTTiD336wMHvf22j4I3zlZTnJs/SDC13040.JPG?psid=1" title="金秋时节"></a></p>
+<p> </p>
+<p>可惜啊，连迎客松都没看到，虽然这次很累，但我还是准备下次有机会再去一次，要做好充足准备，睡好吃好地再去一次！</p>
+<p>顺带说一句，文章最上方图片中的“二天一流”出自宫本武藏的剑术理念，我穿的那件T恤正面就是井上雄彦笔下的宫本武藏。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/journey-of-mount-huang" data-id="ckk9ylmbh0028q0rthvdc0bmf" data-title="黄山很美，可惜天公不作美" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B-%E9%BB%84%E5%B1%B1/" rel="tag">
+- 大学生活
+- 边走边看
+- 黄山</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/something-about-mini-4wd" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          不一样的mini四驱车，不一样的时光
+        
+      </div>
+    </a>
+  
+  
+    <a href="/the-music-of-lo-da-yu" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">从《亚细亚的孤儿》浅谈罗大佑</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACG-BD-EVA/" rel="tag">
+- ACG
+- BD
+- EVA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACG-%E5%9B%9E%E5%BF%86-%E6%B8%B8%E6%88%8F%E7%8E%8B/" rel="tag">
+- ACG
+- 回忆
+- 游戏王</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACG-%E6%89%8B%E5%8A%9E-%E6%94%B6%E8%97%8F/" rel="tag">
+- ACG
+- 手办
+- 收藏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-big-data-%E9%98%85%E8%AF%BB/" rel="tag">
+- Android
+- big data
+- 阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CIFF-%E7%8B%AC%E7%AB%8B-%E7%94%B5%E5%BD%B1/" rel="tag">
+- CIFF
+- 独立
+- 电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-system-mmap-Tachyon-Python/" rel="tag">
+- Computer system
+- mmap
+- Tachyon
+- Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getting-Started/" rel="tag">
+- Getting Started</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ShadowSocks/" rel="tag">
+- ShadowSocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slam-Dunk-%E4%BA%95%E4%B8%8A%E5%A4%A7%E7%A5%9E-%E7%A5%9E%E4%BD%9C/" rel="tag">
+- Slam Dunk
+- 井上大神
+- 神作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YGO-Windows-YGOPro/" rel="tag">
+- YGO
+- Windows
+- YGOPro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-wordpress/" rel="tag">
+- blog
+- wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myself-%E6%9D%82%E6%84%9F/" rel="tag">
+- myself
+- 杂感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wordpress/" rel="tag">
+- wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/" rel="tag">
+- 人生感悟
+- 信口开河</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/" rel="tag">
+- 人生感悟
+- 信口开河
+- 大学生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B/" rel="tag">
+- 人生感悟
+- 信口开河
+- 边走边看</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E6%89%8B%E5%86%A2%E6%B2%BB%E8%99%AB-%E6%BC%AB%E7%94%BB/" rel="tag">
+- 人生感悟
+- 手冢治虫
+- 漫画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E6%BC%AB%E7%94%BB/" rel="tag">
+- 人生感悟
+- 漫画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/" rel="tag">
+- 信口开河</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E6%BC%AB%E7%94%BB/" rel="tag">
+- 信口开河
+- 大学生活
+- 漫画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%9B%E9%A9%B1%E8%BD%A6-%E7%AB%A5%E5%B9%B4/" rel="tag">
+- 四驱车
+- 童年</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%9E%E5%BF%86-%E6%BC%AB%E7%94%BB/" rel="tag">
+- 回忆
+- 漫画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/" rel="tag">
+- 大学生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B/" rel="tag">
+- 大学生活
+- 边走边看</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B-%E9%BB%84%E5%B1%B1/" rel="tag">
+- 大学生活
+- 边走边看
+- 黄山</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E8%AF%B4-%E7%95%A5%E7%A5%9E%E4%BD%9C/" rel="tag">
+- 小说
+- 略神作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E5%A4%8D%E4%B8%80%E5%B9%B4-%E6%9D%8E%E5%BF%97/" rel="tag">
+- 年复一年
+- 李志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%BF%E6%B2%BB-%E9%9F%B3%E4%B9%90/" rel="tag">
+- 政治
+- 音乐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E5%AD%A6-%E7%94%B5%E5%BD%B1-%E8%AE%A1%E7%AE%97%E6%9C%BA-%E9%9F%B3%E4%B9%90/" rel="tag">
+- 文学
+- 电影
+- 计算机
+- 音乐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E8%89%BA-%E6%BC%94%E5%94%B1%E4%BC%9A-%E7%BD%97%E5%A4%A7%E4%BD%91/" rel="tag">
+- 文艺
+- 演唱会
+- 罗大佑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Spark-Hadoop-MapReduce-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="tag">
+- 机器学习
+- Spark
+- Hadoop
+- MapReduce
+- 推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B0%91%E4%B8%BB-%E7%A4%BE%E4%BC%9A/" rel="tag">
+- 民主
+- 社会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B0%91%E8%B0%A3-%E5%8F%B0%E6%B9%BE-%E9%9F%B3%E4%B9%90/" rel="tag">
+- 民谣 台湾
+- 音乐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%BB%E6%84%88-%E6%BC%AB%E7%94%BB-%E9%9D%92%E6%98%A5/" rel="tag">
+- 治愈
+- 漫画
+- 青春</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BC%AB%E7%94%BB-%E7%94%B5%E5%BD%B1-%E9%9F%B3%E4%B9%90-2015-%E5%8C%97%E4%BA%AC-%E5%BE%AE%E8%BD%AF-%E7%BE%8E%E9%A3%9F-%E6%B8%B8%E6%88%8F/" rel="tag">
+- 漫画
+- 电影
+- 音乐
+- 2015
+- 北京
+- 微软
+- 美食
+- 游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BC%AB%E7%94%BB-%E7%BA%B8%E7%89%87%E5%85%9A/" rel="tag">
+- 漫画
+- 纸片党</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E5%BD%B1-%E7%BE%8E%E6%BC%AB/" rel="tag">
+- 电影
+- 美漫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AD%81%E6%8B%94-%E5%9B%BD%E4%BA%A7%E5%8A%A8%E7%94%BB-%E4%BA%BA%E7%94%9F%E6%9D%82%E6%84%9F/" rel="tag">
+- 魁拔 国产动画 人生杂感</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACG-BD-EVA/" style="font-size: 10px;">
+- ACG
+- BD
+- EVA</a> <a href="/tags/ACG-%E5%9B%9E%E5%BF%86-%E6%B8%B8%E6%88%8F%E7%8E%8B/" style="font-size: 10px;">
+- ACG
+- 回忆
+- 游戏王</a> <a href="/tags/ACG-%E6%89%8B%E5%8A%9E-%E6%94%B6%E8%97%8F/" style="font-size: 10px;">
+- ACG
+- 手办
+- 收藏</a> <a href="/tags/Android-big-data-%E9%98%85%E8%AF%BB/" style="font-size: 10px;">
+- Android
+- big data
+- 阅读</a> <a href="/tags/CIFF-%E7%8B%AC%E7%AB%8B-%E7%94%B5%E5%BD%B1/" style="font-size: 10px;">
+- CIFF
+- 独立
+- 电影</a> <a href="/tags/Computer-system-mmap-Tachyon-Python/" style="font-size: 10px;">
+- Computer system
+- mmap
+- Tachyon
+- Python</a> <a href="/tags/Getting-Started/" style="font-size: 10px;">
+- Getting Started</a> <a href="/tags/ShadowSocks/" style="font-size: 10px;">
+- ShadowSocks</a> <a href="/tags/Slam-Dunk-%E4%BA%95%E4%B8%8A%E5%A4%A7%E7%A5%9E-%E7%A5%9E%E4%BD%9C/" style="font-size: 10px;">
+- Slam Dunk
+- 井上大神
+- 神作</a> <a href="/tags/YGO-Windows-YGOPro/" style="font-size: 10px;">
+- YGO
+- Windows
+- YGOPro</a> <a href="/tags/blog-wordpress/" style="font-size: 10px;">
+- blog
+- wordpress</a> <a href="/tags/myself-%E6%9D%82%E6%84%9F/" style="font-size: 10px;">
+- myself
+- 杂感</a> <a href="/tags/wordpress/" style="font-size: 10px;">
+- wordpress</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/" style="font-size: 10px;">
+- 人生感悟
+- 信口开河</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/" style="font-size: 10px;">
+- 人生感悟
+- 信口开河
+- 大学生活</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B/" style="font-size: 10px;">
+- 人生感悟
+- 信口开河
+- 边走边看</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E6%89%8B%E5%86%A2%E6%B2%BB%E8%99%AB-%E6%BC%AB%E7%94%BB/" style="font-size: 10px;">
+- 人生感悟
+- 手冢治虫
+- 漫画</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E6%BC%AB%E7%94%BB/" style="font-size: 10px;">
+- 人生感悟
+- 漫画</a> <a href="/tags/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/" style="font-size: 20px;">
+- 信口开河</a> <a href="/tags/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E6%BC%AB%E7%94%BB/" style="font-size: 10px;">
+- 信口开河
+- 大学生活
+- 漫画</a> <a href="/tags/%E5%9B%9B%E9%A9%B1%E8%BD%A6-%E7%AB%A5%E5%B9%B4/" style="font-size: 10px;">
+- 四驱车
+- 童年</a> <a href="/tags/%E5%9B%9E%E5%BF%86-%E6%BC%AB%E7%94%BB/" style="font-size: 10px;">
+- 回忆
+- 漫画</a> <a href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/" style="font-size: 10px;">
+- 大学生活</a> <a href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B/" style="font-size: 10px;">
+- 大学生活
+- 边走边看</a> <a href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B-%E9%BB%84%E5%B1%B1/" style="font-size: 10px;">
+- 大学生活
+- 边走边看
+- 黄山</a> <a href="/tags/%E5%B0%8F%E8%AF%B4-%E7%95%A5%E7%A5%9E%E4%BD%9C/" style="font-size: 10px;">
+- 小说
+- 略神作</a> <a href="/tags/%E5%B9%B4%E5%A4%8D%E4%B8%80%E5%B9%B4-%E6%9D%8E%E5%BF%97/" style="font-size: 10px;">
+- 年复一年
+- 李志</a> <a href="/tags/%E6%94%BF%E6%B2%BB-%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">
+- 政治
+- 音乐</a> <a href="/tags/%E6%96%87%E5%AD%A6-%E7%94%B5%E5%BD%B1-%E8%AE%A1%E7%AE%97%E6%9C%BA-%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">
+- 文学
+- 电影
+- 计算机
+- 音乐</a> <a href="/tags/%E6%96%87%E8%89%BA-%E6%BC%94%E5%94%B1%E4%BC%9A-%E7%BD%97%E5%A4%A7%E4%BD%91/" style="font-size: 10px;">
+- 文艺
+- 演唱会
+- 罗大佑</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Spark-Hadoop-MapReduce-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">
+- 机器学习
+- Spark
+- Hadoop
+- MapReduce
+- 推荐系统</a> <a href="/tags/%E6%B0%91%E4%B8%BB-%E7%A4%BE%E4%BC%9A/" style="font-size: 10px;">
+- 民主
+- 社会</a> <a href="/tags/%E6%B0%91%E8%B0%A3-%E5%8F%B0%E6%B9%BE-%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">
+- 民谣 台湾
+- 音乐</a> <a href="/tags/%E6%B2%BB%E6%84%88-%E6%BC%AB%E7%94%BB-%E9%9D%92%E6%98%A5/" style="font-size: 10px;">
+- 治愈
+- 漫画
+- 青春</a> <a href="/tags/%E6%BC%AB%E7%94%BB-%E7%94%B5%E5%BD%B1-%E9%9F%B3%E4%B9%90-2015-%E5%8C%97%E4%BA%AC-%E5%BE%AE%E8%BD%AF-%E7%BE%8E%E9%A3%9F-%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">
+- 漫画
+- 电影
+- 音乐
+- 2015
+- 北京
+- 微软
+- 美食
+- 游戏</a> <a href="/tags/%E6%BC%AB%E7%94%BB-%E7%BA%B8%E7%89%87%E5%85%9A/" style="font-size: 10px;">
+- 漫画
+- 纸片党</a> <a href="/tags/%E7%94%B5%E5%BD%B1-%E7%BE%8E%E6%BC%AB/" style="font-size: 10px;">
+- 电影
+- 美漫</a> <a href="/tags/%E9%AD%81%E6%8B%94-%E5%9B%BD%E4%BA%A7%E5%8A%A8%E7%94%BB-%E4%BA%BA%E7%94%9F%E6%9D%82%E6%84%9F/" style="font-size: 10px;">
+- 魁拔 国产动画 人生杂感</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/24/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/pca-detector-in-shilling-attack">推荐系统中的恶意用户过滤浅析</a>
+          </li>
+        
+          <li>
+            <a href="/2015-notes">我的2015，那些电影·书·漫画·音乐·游戏·小事</a>
+          </li>
+        
+          <li>
+            <a href="/how-to-build-ygopro-in-windows-without-directx-sdk">Build  YGOPro on Windows without DirectX SDK</a>
+          </li>
+        
+          <li>
+            <a href="/mmap-use">mmap初探</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

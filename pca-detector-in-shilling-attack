@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>推荐系统中的恶意用户过滤浅析 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="这篇文章大约很早前就想写了，不过随着自己屡次复发的拖延症一起被淹没了，直到最近有人在网络上咨询我才重新拿起来写篇博文。 这个题目其实来自于一道基于Hadoop MapReduce的编程类比赛题目，原题大约如下：基于公开数据集MovieLens数据集上的用户评价数据，计算用户对其未看过，并且可能会看的电影的评分。同时请各参赛队伍考虑数据稀疏性问题和恶意用户问题，使推荐系统在上述极端情况下具有较好的性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐系统中的恶意用户过滤浅析">
+<meta property="og:url" content="http://example.com/pca-detector-in-shilling-attack">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这篇文章大约很早前就想写了，不过随着自己屡次复发的拖延症一起被淹没了，直到最近有人在网络上咨询我才重新拿起来写篇博文。 这个题目其实来自于一道基于Hadoop MapReduce的编程类比赛题目，原题大约如下：基于公开数据集MovieLens数据集上的用户评价数据，计算用户对其未看过，并且可能会看的电影的评分。同时请各参赛队伍考虑数据稀疏性问题和恶意用户问题，使推荐系统在上述极端情况下具有较好的性">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/62eae5a9jw1f1vr3ctoszj20p30gf7di.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/62eae5a9jw1f1vrc927iej20x50esgoj.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/62eae5a9jw1f1vrp4qmz0j20ja0b0ab5.jpg">
+<meta property="article:published_time" content="2016-03-13T17:29:00.000Z">
+<meta property="article:modified_time" content="2016-03-13T17:52:09.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="
+- 机器学习
+- Spark
+- Hadoop
+- MapReduce
+- 推荐系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/62eae5a9jw1f1vr3ctoszj20p30gf7di.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-推荐系统中的恶意用户过滤浅析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/pca-detector-in-shilling-attack" class="article-date">
+  <time class="dt-published" datetime="2016-03-13T17:29:00.000Z" itemprop="datePublished">2016-03-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      推荐系统中的恶意用户过滤浅析
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>这篇文章大约很早前就想写了，不过随着自己屡次复发的拖延症一起被淹没了，直到最近有人在网络上咨询我才重新拿起来写篇博文。</p>
+<p>这个题目其实来自于一道基于Hadoop MapReduce的编程类比赛题目，原题大约如下：<code>基于公开数据集MovieLens数据集上的用户评价数据，计算用户对其未看过，并且可能会看的电影的评分。同时请各参赛队伍考虑数据稀疏性问题和恶意用户问题，使推荐系统在上述极端情况下具有较好的性能</code>，其中的<code>恶意用户</code>被定义为<code>在推荐系统中，存在一系列的恶意用户，其行为主要体现在随机打分或为多部电影打相同的分。为了检验推荐算法是否可以减少或避免恶意用户的影响，将通过随机加入恶意用户的方法，比率为5%，10%，并分别执行推荐算法，计算RMSE和MAE。</code>，可以理解成那些在豆瓣上，电影放映期间的水军。</p>
+<p>与Spark自己构建了一个MLlib的思路不同，Hadoop将主要精力focus在存储的HDFS和任务分配执行的YARN（包含可以执行MapReduce的任务部分）上面，所以如果熟悉Hadoop MapReduce的人都知道基于这个平台做分布式机器学习一个很好的轮子就是借助于Mahout。当然Mahout确实不怎么好用，依稀记得2013年<a target="_blank" rel="noopener" href="https://www.linkedin.com/in/reynoldxin">Reynold</a>来我校进行Spark的“地推”时，有个年轻老师就问了这个问题，Reynold就强烈吐槽了Mahout的难用。时过境迁，Mahout在2015年宣布了不再接受新的MapReduce算法（see <a target="_blank" rel="noopener" href="http://mahout.apache.org/general/release-notes.html">0.10.0 release notes</a>），其执行引擎从Hadoop MapReduce全面转型为Scala + Spark和H2O，真是让人感叹技术圈的技术更新迭代。</p>
+<p>回到题目本身，很容易想到的就是前端接一个过滤算法，后端再接一个推荐算法，推荐算法的选择就用工业界已经证明相当成熟的<a target="_blank" rel="noopener" href="http://www.grappa.univ-lille3.fr/~mary/cours/stats/centrale/reco/paper/MatrixFactorizationALS.pdf">ALS-WR</a>即可，Mahout很早就在Hadoop中实现了<a target="_blank" rel="noopener" href="https://mahout.apache.org/users/recommender/intro-als-hadoop.html">该部分</a>，所以把轮子拿来用即可（稍微出乎我意料的是，这个比赛中貌似有些队伍自己实现了基于类似简单协同过滤等方法的推荐系统，效果还很一般，不知为何放着现成的好轮子不用）。数据稀疏性问题不大，毕竟ALS在过拟合以及稀疏数据上的效果都不错，但是如何应对恶意用户，因为自己不是纯做机器学习出身，所以就去搜了一下这方面的论文。恶意用户攻击一般在英文中被表述成shilling attack（托攻击），关于这方面内容的研究似乎不是非常多，在08、09年左右Mehta等人关于robust collaborative filtering的研究取得了不错的进展，过滤恶意用户的方法也就是著名的PCA。原理就是恶意用户的生成往往是遵从一些既有的设定模式，所以这些恶意用户间的协方差比较小，恶意用户与正常用户间的协方差比较大。PCA的核心思想就是压缩原始矩阵的特征维度，在这里就是压缩用户维度，保留包含信息量更大的用户下来（认为是真实用户），论文中用皮尔逊相关系数图表征了这一关系：<br><img src="http://ww1.sinaimg.cn/large/62eae5a9jw1f1vr3ctoszj20p30gf7di.jpg" alt="50个正常用户与20个攻击用户的皮尔逊积图"><br>PCA部分的算法阐述如下：<br><img src="http://ww4.sinaimg.cn/large/62eae5a9jw1f1vrc927iej20x50esgoj.jpg" alt="PCA select 方法"><br>需要注意的是这里的算法阐述是用求原始输入矩阵的协方差矩阵之后再求特征向量计算来计算SVD，实际分布式环境下一般用SVD得到矩阵<code>U</code>和<code>sigma</code>来求PCA，论文中也提及了一般3~5个主成分的精度就可以了。该算法原理清晰，论文有数据支撑，但是本以为很快就搞定的东西居然遇到了困难，首先是Hadoop处理数据（movielens ml-10M）太慢，跑一轮程序需要13、14min左右，跑完还得看结果是否符合预期，验证时候没想到论文中在10% atack size下动辄90%+的精确度，在我这里居然只有很可怜的2、30%。由于当时我还在微软实习，白天得忙着公司的工作，晚上还得折腾这个比赛，由于Hadoop实现的验证太慢，所以我在Spark上又实现了一个PCA，结果发现Spark的实现也没快到哪去。由于整个流程比较长，所以我从向数据中插入恶意用户的代码开始，到数据预处理，中间数据处理（如何存储序列化矩阵）到最后的结果验证，一步步review了代码，在确信各个步骤的实现正确后，我一时没有头绪……此时我突然想到，既然论文中所用的数据<a target="_blank" rel="noopener" href="http://grouplens.org/datasets/movielens/100k/">movielens-100k</a>规模不大，何不实现一个单机版本的算法用于我的理论验证，所以我很快用breeze（一个用scala写的线性代数库）实现了一个，并且在其上得到了与分布式版本一样糟糕的精确度= =</p>
+<p>还好，这说明了我之前的实现是没有问题的。所以我回头看核心的算法表述，并且在网上找到了一个<a target="_blank" rel="noopener" href="http://docslide.us/news-politics/tutorial-on-robustness-of-recommender-systems.html">slides</a>，原来根本问题是z-score时的trick，z-score也就是归一化输入矩阵在论文中被一句带过了，该trick就是将输入矩阵的缺失值当作0处理，根据被填上0的每个user的instance来计算均值和标准差，再对该instance进行归一化，而我原来的做法则是将缺失值忽略掉进行计算。在此基础上我果然重现了论文中的精确度。当然这个算法虽然精确度很高，但是有着一个比较致命的弱点，就是恶意攻击用户的比例是需要人为设置的，还好，这是一个比赛，所以题目中已经提及了恶意用户比例，使用这个算法再合适不过了。但是因为输入数据不同，但是我们无法判断输入数据是哪一种类型（正常的，稀疏的还是掺有虚假数据的），所以其他两种case时，仍然会对正常数据进行过滤，去除掉正常的数据会对最后的推荐带来负面影响，所以我离线测试了一下三种case在不同过滤比例下的RMSE，最终选择了过滤4%的数据，（做题嘛，毕竟要应试导向）。我还采用了另外一种方法来避免正常数据的过滤，由于插入虚假数据用户往往会对大量电影进行评分，从而提高其在推荐系统中的影响，所以对于嫌疑用户还加了一个限制，也就是如果该嫌疑用户的评分电影数目大于全局用户平均评分数的2倍以上（做实验的经验值），就认为其是恶意用户。<br><img src="http://ww3.sinaimg.cn/large/62eae5a9jw1f1vrp4qmz0j20ja0b0ab5.jpg" alt="过滤不同比例恶意用户对应的RMSE"></p>
+<p>后来比赛的结果是我们在这道题上拿了第一（时间和RMSE的结果综合评价），实事求是的讲，我觉得我在这道题无论思路还是做法都挺直白简单的，只能说大牛没来参加吧（XD）。回头看整个项目的核心insight就是先在小数据集上进行单机debug，再在分布式上验证，这也应该是合理的开发模式。</p>
+<p>我在github上放了其中PCA检测的部分<a target="_blank" rel="noopener" href="https://github.com/Myasuka/PCA-Detector/">代码</a>，包含基于Mahout、Spark和Breeze的实现。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/pca-detector-in-shilling-attack" data-id="ckk9ylmad001hq0rtau7k649m" data-title="推荐系统中的恶意用户过滤浅析" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Spark-Hadoop-MapReduce-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="tag">
+- 机器学习
+- Spark
+- Hadoop
+- MapReduce
+- 推荐系统</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/24/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015-notes" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">我的2015，那些电影·书·漫画·音乐·游戏·小事</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACG-BD-EVA/" rel="tag">
+- ACG
+- BD
+- EVA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACG-%E5%9B%9E%E5%BF%86-%E6%B8%B8%E6%88%8F%E7%8E%8B/" rel="tag">
+- ACG
+- 回忆
+- 游戏王</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACG-%E6%89%8B%E5%8A%9E-%E6%94%B6%E8%97%8F/" rel="tag">
+- ACG
+- 手办
+- 收藏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-big-data-%E9%98%85%E8%AF%BB/" rel="tag">
+- Android
+- big data
+- 阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CIFF-%E7%8B%AC%E7%AB%8B-%E7%94%B5%E5%BD%B1/" rel="tag">
+- CIFF
+- 独立
+- 电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-system-mmap-Tachyon-Python/" rel="tag">
+- Computer system
+- mmap
+- Tachyon
+- Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getting-Started/" rel="tag">
+- Getting Started</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ShadowSocks/" rel="tag">
+- ShadowSocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Slam-Dunk-%E4%BA%95%E4%B8%8A%E5%A4%A7%E7%A5%9E-%E7%A5%9E%E4%BD%9C/" rel="tag">
+- Slam Dunk
+- 井上大神
+- 神作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YGO-Windows-YGOPro/" rel="tag">
+- YGO
+- Windows
+- YGOPro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-wordpress/" rel="tag">
+- blog
+- wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myself-%E6%9D%82%E6%84%9F/" rel="tag">
+- myself
+- 杂感</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wordpress/" rel="tag">
+- wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/" rel="tag">
+- 人生感悟
+- 信口开河</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/" rel="tag">
+- 人生感悟
+- 信口开河
+- 大学生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B/" rel="tag">
+- 人生感悟
+- 信口开河
+- 边走边看</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E6%89%8B%E5%86%A2%E6%B2%BB%E8%99%AB-%E6%BC%AB%E7%94%BB/" rel="tag">
+- 人生感悟
+- 手冢治虫
+- 漫画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E6%BC%AB%E7%94%BB/" rel="tag">
+- 人生感悟
+- 漫画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/" rel="tag">
+- 信口开河</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E6%BC%AB%E7%94%BB/" rel="tag">
+- 信口开河
+- 大学生活
+- 漫画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%9B%E9%A9%B1%E8%BD%A6-%E7%AB%A5%E5%B9%B4/" rel="tag">
+- 四驱车
+- 童年</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%9E%E5%BF%86-%E6%BC%AB%E7%94%BB/" rel="tag">
+- 回忆
+- 漫画</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/" rel="tag">
+- 大学生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B/" rel="tag">
+- 大学生活
+- 边走边看</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B-%E9%BB%84%E5%B1%B1/" rel="tag">
+- 大学生活
+- 边走边看
+- 黄山</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E8%AF%B4-%E7%95%A5%E7%A5%9E%E4%BD%9C/" rel="tag">
+- 小说
+- 略神作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E5%A4%8D%E4%B8%80%E5%B9%B4-%E6%9D%8E%E5%BF%97/" rel="tag">
+- 年复一年
+- 李志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%94%BF%E6%B2%BB-%E9%9F%B3%E4%B9%90/" rel="tag">
+- 政治
+- 音乐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E5%AD%A6-%E7%94%B5%E5%BD%B1-%E8%AE%A1%E7%AE%97%E6%9C%BA-%E9%9F%B3%E4%B9%90/" rel="tag">
+- 文学
+- 电影
+- 计算机
+- 音乐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E8%89%BA-%E6%BC%94%E5%94%B1%E4%BC%9A-%E7%BD%97%E5%A4%A7%E4%BD%91/" rel="tag">
+- 文艺
+- 演唱会
+- 罗大佑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Spark-Hadoop-MapReduce-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="tag">
+- 机器学习
+- Spark
+- Hadoop
+- MapReduce
+- 推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B0%91%E4%B8%BB-%E7%A4%BE%E4%BC%9A/" rel="tag">
+- 民主
+- 社会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B0%91%E8%B0%A3-%E5%8F%B0%E6%B9%BE-%E9%9F%B3%E4%B9%90/" rel="tag">
+- 民谣 台湾
+- 音乐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B2%BB%E6%84%88-%E6%BC%AB%E7%94%BB-%E9%9D%92%E6%98%A5/" rel="tag">
+- 治愈
+- 漫画
+- 青春</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BC%AB%E7%94%BB-%E7%94%B5%E5%BD%B1-%E9%9F%B3%E4%B9%90-2015-%E5%8C%97%E4%BA%AC-%E5%BE%AE%E8%BD%AF-%E7%BE%8E%E9%A3%9F-%E6%B8%B8%E6%88%8F/" rel="tag">
+- 漫画
+- 电影
+- 音乐
+- 2015
+- 北京
+- 微软
+- 美食
+- 游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BC%AB%E7%94%BB-%E7%BA%B8%E7%89%87%E5%85%9A/" rel="tag">
+- 漫画
+- 纸片党</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%B5%E5%BD%B1-%E7%BE%8E%E6%BC%AB/" rel="tag">
+- 电影
+- 美漫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AD%81%E6%8B%94-%E5%9B%BD%E4%BA%A7%E5%8A%A8%E7%94%BB-%E4%BA%BA%E7%94%9F%E6%9D%82%E6%84%9F/" rel="tag">
+- 魁拔 国产动画 人生杂感</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACG-BD-EVA/" style="font-size: 10px;">
+- ACG
+- BD
+- EVA</a> <a href="/tags/ACG-%E5%9B%9E%E5%BF%86-%E6%B8%B8%E6%88%8F%E7%8E%8B/" style="font-size: 10px;">
+- ACG
+- 回忆
+- 游戏王</a> <a href="/tags/ACG-%E6%89%8B%E5%8A%9E-%E6%94%B6%E8%97%8F/" style="font-size: 10px;">
+- ACG
+- 手办
+- 收藏</a> <a href="/tags/Android-big-data-%E9%98%85%E8%AF%BB/" style="font-size: 10px;">
+- Android
+- big data
+- 阅读</a> <a href="/tags/CIFF-%E7%8B%AC%E7%AB%8B-%E7%94%B5%E5%BD%B1/" style="font-size: 10px;">
+- CIFF
+- 独立
+- 电影</a> <a href="/tags/Computer-system-mmap-Tachyon-Python/" style="font-size: 10px;">
+- Computer system
+- mmap
+- Tachyon
+- Python</a> <a href="/tags/Getting-Started/" style="font-size: 10px;">
+- Getting Started</a> <a href="/tags/ShadowSocks/" style="font-size: 10px;">
+- ShadowSocks</a> <a href="/tags/Slam-Dunk-%E4%BA%95%E4%B8%8A%E5%A4%A7%E7%A5%9E-%E7%A5%9E%E4%BD%9C/" style="font-size: 10px;">
+- Slam Dunk
+- 井上大神
+- 神作</a> <a href="/tags/YGO-Windows-YGOPro/" style="font-size: 10px;">
+- YGO
+- Windows
+- YGOPro</a> <a href="/tags/blog-wordpress/" style="font-size: 10px;">
+- blog
+- wordpress</a> <a href="/tags/myself-%E6%9D%82%E6%84%9F/" style="font-size: 10px;">
+- myself
+- 杂感</a> <a href="/tags/wordpress/" style="font-size: 10px;">
+- wordpress</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/" style="font-size: 10px;">
+- 人生感悟
+- 信口开河</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/" style="font-size: 10px;">
+- 人生感悟
+- 信口开河
+- 大学生活</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B/" style="font-size: 10px;">
+- 人生感悟
+- 信口开河
+- 边走边看</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E6%89%8B%E5%86%A2%E6%B2%BB%E8%99%AB-%E6%BC%AB%E7%94%BB/" style="font-size: 10px;">
+- 人生感悟
+- 手冢治虫
+- 漫画</a> <a href="/tags/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F-%E6%BC%AB%E7%94%BB/" style="font-size: 10px;">
+- 人生感悟
+- 漫画</a> <a href="/tags/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/" style="font-size: 20px;">
+- 信口开河</a> <a href="/tags/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3-%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E6%BC%AB%E7%94%BB/" style="font-size: 10px;">
+- 信口开河
+- 大学生活
+- 漫画</a> <a href="/tags/%E5%9B%9B%E9%A9%B1%E8%BD%A6-%E7%AB%A5%E5%B9%B4/" style="font-size: 10px;">
+- 四驱车
+- 童年</a> <a href="/tags/%E5%9B%9E%E5%BF%86-%E6%BC%AB%E7%94%BB/" style="font-size: 10px;">
+- 回忆
+- 漫画</a> <a href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/" style="font-size: 10px;">
+- 大学生活</a> <a href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B/" style="font-size: 10px;">
+- 大学生活
+- 边走边看</a> <a href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB-%E8%BE%B9%E8%B5%B0%E8%BE%B9%E7%9C%8B-%E9%BB%84%E5%B1%B1/" style="font-size: 10px;">
+- 大学生活
+- 边走边看
+- 黄山</a> <a href="/tags/%E5%B0%8F%E8%AF%B4-%E7%95%A5%E7%A5%9E%E4%BD%9C/" style="font-size: 10px;">
+- 小说
+- 略神作</a> <a href="/tags/%E5%B9%B4%E5%A4%8D%E4%B8%80%E5%B9%B4-%E6%9D%8E%E5%BF%97/" style="font-size: 10px;">
+- 年复一年
+- 李志</a> <a href="/tags/%E6%94%BF%E6%B2%BB-%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">
+- 政治
+- 音乐</a> <a href="/tags/%E6%96%87%E5%AD%A6-%E7%94%B5%E5%BD%B1-%E8%AE%A1%E7%AE%97%E6%9C%BA-%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">
+- 文学
+- 电影
+- 计算机
+- 音乐</a> <a href="/tags/%E6%96%87%E8%89%BA-%E6%BC%94%E5%94%B1%E4%BC%9A-%E7%BD%97%E5%A4%A7%E4%BD%91/" style="font-size: 10px;">
+- 文艺
+- 演唱会
+- 罗大佑</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-Spark-Hadoop-MapReduce-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">
+- 机器学习
+- Spark
+- Hadoop
+- MapReduce
+- 推荐系统</a> <a href="/tags/%E6%B0%91%E4%B8%BB-%E7%A4%BE%E4%BC%9A/" style="font-size: 10px;">
+- 民主
+- 社会</a> <a href="/tags/%E6%B0%91%E8%B0%A3-%E5%8F%B0%E6%B9%BE-%E9%9F%B3%E4%B9%90/" style="font-size: 10px;">
+- 民谣 台湾
+- 音乐</a> <a href="/tags/%E6%B2%BB%E6%84%88-%E6%BC%AB%E7%94%BB-%E9%9D%92%E6%98%A5/" style="font-size: 10px;">
+- 治愈
+- 漫画
+- 青春</a> <a href="/tags/%E6%BC%AB%E7%94%BB-%E7%94%B5%E5%BD%B1-%E9%9F%B3%E4%B9%90-2015-%E5%8C%97%E4%BA%AC-%E5%BE%AE%E8%BD%AF-%E7%BE%8E%E9%A3%9F-%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">
+- 漫画
+- 电影
+- 音乐
+- 2015
+- 北京
+- 微软
+- 美食
+- 游戏</a> <a href="/tags/%E6%BC%AB%E7%94%BB-%E7%BA%B8%E7%89%87%E5%85%9A/" style="font-size: 10px;">
+- 漫画
+- 纸片党</a> <a href="/tags/%E7%94%B5%E5%BD%B1-%E7%BE%8E%E6%BC%AB/" style="font-size: 10px;">
+- 电影
+- 美漫</a> <a href="/tags/%E9%AD%81%E6%8B%94-%E5%9B%BD%E4%BA%A7%E5%8A%A8%E7%94%BB-%E4%BA%BA%E7%94%9F%E6%9D%82%E6%84%9F/" style="font-size: 10px;">
+- 魁拔 国产动画 人生杂感</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/24/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/pca-detector-in-shilling-attack">推荐系统中的恶意用户过滤浅析</a>
+          </li>
+        
+          <li>
+            <a href="/2015-notes">我的2015，那些电影·书·漫画·音乐·游戏·小事</a>
+          </li>
+        
+          <li>
+            <a href="/how-to-build-ygopro-in-windows-without-directx-sdk">Build  YGOPro on Windows without DirectX SDK</a>
+          </li>
+        
+          <li>
+            <a href="/mmap-use">mmap初探</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
