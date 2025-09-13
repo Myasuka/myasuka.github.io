@@ -1,4 +1,49 @@
 baseURL = 'https://myasuka.github.io/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Above the Abstraction'
 theme = 'hextra'
+
+[params]
+  [params.navbar]
+    displayTitle = true
+    displayLogo = true
+    [params.navbar.logo]
+      path = "images/avatar.png"
+      dark = "images/avatar.png"
+      link = "/"
+      width = 24
+      height = 24
+
+[params.search]
+  enable = true
+
+[params.comments]
+  enable = true
+  type = "giscus"
+  [params.comments.giscus]
+    repo = "myasuka/myasuka.github.io"
+    repoId = "MDEwOlJlcG9zaXRvcnk2MTU2NDQxMA=="
+    category = "General"
+    categoryId = "DIC_kwDOA6tl-s4CvZsn"
+    mapping = "pathname"
+    theme = "preferred_color_scheme"
+    lang = "zh-CN"
+
+[menu]
+  [[menu.main]]
+    name = "Blog"
+    pageRef = "/"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 2
+  [[menu.main]]
+    name = "Search"
+    weight = 3
+    params = { type = "search" }
+  [[menu.main]]
+    name = "GitHub"
+    url = "https://github.com/myasuka/myasuka.github.io"
+    weight = 4
+    params = { icon = "github" }

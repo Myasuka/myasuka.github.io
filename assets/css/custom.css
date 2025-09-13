@@ -1,0 +1,18 @@
+/* Custom CSS for circular logo */
+.hextra-navbar-title a img {
+  border-radius: 50% !important;
+  overflow: hidden !important;
+}
+
+/* Ensure the logo container maintains proper spacing */
+.hextra-navbar-title a {
+  display: flex;
+  align-items: center;
+}
+
+/* Ensure circular logo in both light and dark modes */
+.hextra-navbar-title a img.hx\:block,
+.hextra-navbar-title a img.hx\:hidden {
+  border-radius: 50% !important;
+  overflow: hidden !important;
+}
