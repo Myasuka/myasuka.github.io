@@ -3,6 +3,10 @@ languageCode = 'en-us'
 title = 'Above the Abstraction'
 theme = 'hextra'
 
+[services]
+  [services.googleAnalytics]
+    ID = "G-XXXXXXXXXX"  # 替换为你的Google Analytics ID
+
 [params]
   [params.navbar]
     displayTitle = true
