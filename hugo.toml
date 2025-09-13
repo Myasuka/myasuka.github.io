@@ -5,7 +5,7 @@ theme = 'hextra'
 
 [services]
   [services.googleAnalytics]
-    ID = "G-XXXXXXXXXX"  # 替换为你的Google Analytics ID
+    ID = "G-MTW2ZB8K4E"
 
 [params]
   [params.navbar]
