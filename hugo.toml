@@ -1,4 +1,4 @@
-baseURL = 'https://myasuka.github.io/'
+baseURL = 'https://myasuka.org/'
 languageCode = 'en-us'
 title = 'Above the Abstraction'
 theme = 'hextra'
