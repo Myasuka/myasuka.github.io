@@ -6,8 +6,9 @@ draft = false
 
 > **Note**: This article was translated from Chinese. Some technical terms and concepts may differ from the original English terminology.
 
-> [!NOTE]
-> The original article posted in [zhihu](https://zhuanlan.zhihu.com/p/606000899) @ 2023-02-20
+{{< callout type="info" emoji="ℹ️" >}}
+  The original article posted in [zhihu](https://zhuanlan.zhihu.com/p/606000899) @ 2023-02-20
+{{< /callout >}}
 
 This is an article that combines a decade of personal learning and growth to understand the development and iteration of unified stream-batch processing engines. The author, starting as an oblivious undergraduate student, observed the development of big data systems, gradually participated in it, and eventually became a committer in the Apache Flink community, following a spiral upward cognitive journey: starting with MapReduce batch processing, then developing machine learning libraries with Spark's convenient and powerful batch processing capabilities; promoting Spark's micro-batch-based real-time computing capabilities at Microsoft, then participating in Flink's real-time computing development and promotion at Alibaba, moving from offline batch processing to real-time online processing, and after leaving Alibaba, promoting unified stream-batch processing engines within the company again.
 

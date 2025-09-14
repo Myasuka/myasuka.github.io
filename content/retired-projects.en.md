@@ -31,20 +31,20 @@ Since this article specifically discusses stream processing engines, the parts s
 
 The reason is that systems that only support simple real-time ETL, which means only map-like operations, are difficult to implement in large enterprises. For example, spark continuous streaming and Pulsar functions, these lightweight systems with light-weight titles, can also be achieved by general stream processing systems (such as Flink), so they are difficult to have advantages in the enterprise technology selection phase.
 
-## Apache Storm
+## [Apache Storm](https://storm.apache.org/)
 Open-sourced by Twitter in 2011, entered the Apache Foundation incubation in September 2013. It is a pioneer in stream processing engines that can achieve low-latency consumption, but does not support stateful computing or exactly-once semantics. From today's perspective, this project proved the possibility of low-latency stream processing, but lacked theoretical innovation. Without Google's dataflow paper support or Flink's lightweight checkpoint algorithm, its ceiling was not high. As an early real-time computing engine, it did not support stateful operations, so it provided the Trident API, which supported stateful operations and exactly-once semantics. However, the data processing mode regressed to micro-batch, and it only supported small-scale state.
 
 By the way, JStorm was contributed to the Storm community by Alibaba in 2015, rewritten in Java with many additional features. Unfortunately, JStorm lost out to Flink in internal competition at Alibaba, so the code merging process was delayed until the Java-rewritten Storm 2.0.0 was officially released in 2019. More absurdly, JStorm's official website http://jstorm.io/ was hijacked by a pornographic website due to the domain not being renewed. This can be seen as a microcosm of early KPI-driven open-source projects in Chinese companies.
 
 Since Flink emerged and was widely promoted, the activity level of the Storm project has obviously declined. In January 2023, discussions were initiated to move the project into the Attic for retirement, but it seems that there are still PMC members willing to continue maintaining it, so it has not been retired at this time.
 
-## Apache Samza
+## [Apache Samza](https://samza.apache.org/)
 Open-sourced by LinkedIn, entered the Apache Foundation incubation in July 2013. It was developed together with Kafka within LinkedIn, so the early committers of this project overlapped somewhat with the Kafka community. It was initially tightly coupled with Kafka, but has become more independent now. It seems that exactly-once semantics have never been supported (although there has been a discussion plan for many years: SEP-10 Exactly-once Processing in Samza). This project is in a somewhat delicate state. Although the project as a whole is no longer active, with versions released on average more than a year apart, it seems that it is still being used internally at LinkedIn (LinkedIn's Stream Processing Meetup with Apache Kafka, Samza, and Flink).
 
-## Apache Apex
+## [Apache Apex](https://apex.apache.org/)
 Backed by a startup company datatorrent, entered the Apache Foundation incubation in August 2015. Frankly speaking, this project did have some highlights - all three key technical points mentioned earlier were supported. Unfortunately, this project started too late, and the backing startup company closed in 2018, causing it to quickly lose core development contributors. The project also entered the Attic early in 2019, making it the earliest retired among the projects we reviewed. From the Apex project, we can also learn lessons: community growth requires involving more developers. Or in other words, even with good technology, academic or industrial backing is needed to make more users willing to try. Apex started later than Flink and did not leave any outstanding papers in academia, so it was naturally difficult to survive in industry.
 
-## Apache Heron
+## [Apache Heron](https://github.com/apache/incubator-heron)
 Twitter's successor to Storm, entered the Apache Foundation incubation in 2017. This one started too late, and it seems that exactly-once semantics were not supported in the early days. The final result was that it couldn't even graduate from the incubation project and was directly retired in early 2023. Since it didn't officially graduate, it didn't even qualify to enter the Attic, making it the most pathetic among the projects reviewed in this article.
 
 ## Conclusion
