@@ -20,7 +20,8 @@ draft = false
 
 我到现在还记得2013年秋天，Reynold Xin拿着那个”比Hadoop快100倍的Spark系统“宣传展示架到系里来做宣传报告的场景，当时线下就有老师提问，明明大部分场景达不到这么高的性能优化，这种取名是不是太标题党了。现在回头看，Databricks其实是很会做技术营销的，日后其与Flink的隔空对战   ，与snowflake的点名开撕   也就不奇怪了。
 
-非常经典的Hadoop vs Spark性能对比图
+![非常经典的Hadoop vs Spark性能对比图](images/spark-vs-hadoop-performance.png)
+
 
 刚接触到Spark时，我就立刻被其身上浓厚的学术圈风格以及相比于Hadoop的更强易用性所吸引了，在我看来，其具有如下的特点：
 
@@ -35,7 +36,8 @@ draft = false
 
 我实习的那半年，也是Spark meetup在北京频繁举行的时间段，以现在各家公司对开源技术的商业化认知，Databricks在那几年自己没怎么花钱，却可以让Spark在北京、上海和杭州顺利举行了多次meetup的场景，已经很难再复现了。所以现在想来，当时大家还是抱着比较纯粹的技术交流目的和热忱。其中因为微软北京的shared data组也在公司内使用和推广Spark，所以也提供了几次meetup场地。只可惜Spark Beijing meetup组在2017年关停了，现在就连Spark官网上的社区活动页面也没有北京meetup信息了，那些年在现场火热的讨论场景似乎就只能成为记忆的一部分。
 
-随着meetup小组关停，里面的图片和交流记录也一并抹去了
+![随着meetup小组关停，里面的图片和交流记录也一并抹去了](images/spark-meetup-history.png)
+
 
 我还记得实习期间的一次讨论，由于当时并没有彻底理解本质，今天回过头看，其实就是流批一体的讨论：mentor在用Spark实现LDA之类的算法时，嫌弃Spark切分stage的执行方式有的时候由于部分慢节点的shuffle write太慢，而导致机器学习的速度不如预期。就问我Spark的各个stage之间是否可以流水线一样地执行，当时我认为这个对Spark的整体数据交换架构改动太大，不方便修改。实际上，这个问题的本质其实是Flink中blocking v.s pipeline shuffle，并在较新的Flink版本中，引入了hybrid shuffle，我们下文再详细展开阐述。
 
@@ -59,7 +61,8 @@ Blink本意是”眨眼“，是阿里基于Apache Flink做得大规模二次开
 
 1.  设计理念不同带来的延迟上限不同。Flink是streaming first，流式作业的算子是在获取到资源后，一直运行的，这样子可以在算子之间进行数据交换时，形成pipeline流水线的数据传输，自然就可以实现毫秒级别的延迟。而Spark则是在批引擎上构建流式计算，所谓micro-batch的架构，其算子在需要map-reduce时，仍然是切分stage的，只能前面一个stage执行完成后，才能执行下一个stage，自然是无法实现毫秒级别的延迟。当然，这也有点好处，就是在可以接受的延迟情况下，能够节省一些资源（毕竟算子不是一直在运行的）。下图来自Aljoscha后来在做API重构时撰写的文章 ，当你更面向流式计算时，你应该申请更多的资源，让算子一直在运行：
 
-    Batch and Streaming: Two sides of the same coin
+![Batch and Streaming: Two sides of the same coin](images/flink-streaming-batch-concept.png)
+
 
 2.  设计理念不同带来的shuffle实现不同。Spark的shuffle来自MapReduce的经典理论，数据传输被切割成了经典的两阶段：根据key划分的map端写磁盘以及reduce端从磁盘读，这个的好处就是实现简单且稳定。而Flink由于是streaming first，所以数据传输是通过上下游task的网络buffer直接连接的流水线模式，聚合的逻辑被主要在下游reduce端（在Flink中就是keyBy 算子之后）的状态中进行处理。这个的好处就是可以达到低延迟，坏处就是这个状态的实现比较复杂，尤其是为了达到低延迟，状态后端（state-backend）需要在性能和capacity上做一个trade off，这也是为什么大规模实时作业需要使用RocksDB state-backend来解决基于on-heap内存的state-backend的稳定性问题。Flink这种数据交换方式带来的另一个非常大的优点，就是天生实现了反压机制（backpressure），上下游task的网络数据buffer队列形成了一个经典的生产者-消费者模型，当下游的消费能力不足时，下游无法向buffer队列中放置数据，整个作业就形成了一个反压的状态，也就不会继续从source端消费数据，避免了数据激增时带来作业的不稳定。至今Spark也依然缺乏一套完善的反压机制来提升稳定性。
 3.  更轻量的checkpoint机制。重构后的spark structured streaming也引入了state，来规避旧版本spark streaming需要将整个RDD持久化带来的不稳定问题。但是因为micro-batch的机制，实际上这些state在开启checkpoint之后，不得不在每个batch结束时对数据进行commit持久化，而不像Flink借助于async checkpoint barrier，可以在任意时间轻量级地执行checkpoint，这也是Flink早期在学术圈的亮点之一 。
@@ -76,11 +79,11 @@ Blink本意是”眨眼“，是阿里基于Apache Flink做得大规模二次开
 
 Flink在早年的论文中，也宣称自己是Stream and Batch Processing in a Single Engine ，但实际上二者其实是两套不一样的API：DataSet和DataStream（见下图）。对于用户而言，除了减少维护一套集群，在代码编写层面是完全不同的体验，无法在企业中发挥最大的价值。
 
-早年的Flink API架构
+![早年的Flink API架构](images/flink-old-api-architecture.png)
 
 而随着Blink被捐献到Flink社区，量仔老师在2015年就畅想的”流批统一“的计算引擎就开始了相关的重构之路，目前随着DataSet API被deprecated，现在的API架构如下图所示；对于用户来说，只要使用一套统一的DataStream或者Table API，一套代码就可以实现面向批处理和流处理优化的作业（大部分可以通过source进行自适应推断执行模式），减少了需要维护的技术栈，减少了数据口径对齐的压力，大大提高了开发效率。尤其是一些流批融合场景，例如索引数据的生成场景，既需要先前的全量数据，也需要实时的数据索引，一套API可以大大提高开发过程中的效率。
 
-现在的Flink API架构
+![现在的Flink API架构](images/flink-current-api-architecture.png)
 
 ### 为什么是Flink适合做这个流批一体的引擎
 

@@ -1,0 +1,12 @@
+{
+    "markdown.preview.markEditorSelection": false,
+    "markdown.preview.scrollEditorWithPreview": true,
+    "markdown.preview.scrollPreviewWithEditor": true,
+    "markdown.preview.breaks": true,
+    "markdown.preview.typographer": true,
+    "markdown.preview.doubleClickToSwitchToEditor": true,
+    "pasteImage.path": "${projectRoot}/static/images",
+    "pasteImage.basePath": "${projectRoot}/images",
+    "pasteImage.forceUnixStyleSeparator": true,
+    "pasteImage.insertPattern": "![${imageFileName}](images/${imageFileName})"
+}

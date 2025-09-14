@@ -27,8 +27,8 @@ theme = 'hextra'
       height = 24
 
 [params.footer]
-  displayPoweredBy = true
   displayCopyright = true
+  displayPoweredBy = true
 
 [params.search]
   enable = true
