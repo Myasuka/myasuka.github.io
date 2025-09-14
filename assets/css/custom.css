@@ -19,11 +19,52 @@
 
 /* Reduce font size of language switcher button */
 .hextra-language-switcher span {
-  font-size: 0.72rem !important; /* xs is 0.75rem, so 0.65rem is smaller */
+  font-size: 0.65rem !important; /* xs is 0.75rem, so 0.65rem is smaller */
 }
 
 /* Also reduce the overall button size slightly */
 .hextra-language-switcher {
-  padding: 0.05rem 0.05rem !important;
+  padding: 0.1rem 0.25rem !important;
   height: auto !important;
+}
+
+/* Ensure images display properly in content */
+.content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure figure elements display properly */
+.content figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.content figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.content figcaption {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+/* Make footer powered by section narrower */
+.hextra-footer .hx\:w-full {
+  width: auto !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+}
+
+/* Additional footer adjustments to reduce width */
+.hextra-footer .hx\:flex-col.hx\:items-center {
+  align-items: center !important;
+}
+
+.hextra-footer .hx\:md\:justify-start {
+  justify-content: center !important;
 }
