@@ -36,8 +36,9 @@
 
 /* Ensure figure elements display properly */
 .content figure {
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
   text-align: center;
+  max-width: 100%;
 }
 
 .content figure img {
@@ -53,18 +54,28 @@
   margin-top: 0.5rem;
 }
 
-/* Make footer powered by section narrower */
+/* Make footer powered by section left-aligned and narrower */
 .hextra-footer .hx\:w-full {
   width: auto !important;
-  display: inline-flex !important;
-  justify-content: center !important;
+  display: inline-block !important;
+  text-align: left !important;
 }
 
-/* Additional footer adjustments to reduce width */
+/* Adjust footer layout for left alignment */
 .hextra-footer .hx\:flex-col.hx\:items-center {
-  align-items: center !important;
+  align-items: flex-start !important;
 }
 
 .hextra-footer .hx\:md\:justify-start {
-  justify-content: center !important;
+  justify-content: flex-start !important;
+}
+
+/* Ensure footer content doesn't stretch */
+.hextra-footer .hx\:flex.hx\:w-full {
+  display: block !important;
+}
+
+/* Remove bold styling from powered by section */
+.hextra-footer .hx\:font-semibold {
+  font-weight: normal !important;
 }
