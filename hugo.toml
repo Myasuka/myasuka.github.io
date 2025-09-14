@@ -1,11 +1,19 @@
 baseURL = 'https://myasuka.org/'
-languageCode = 'en-us'
+defaultContentLanguage = 'zh-cn'
 title = 'Above the Abstraction'
 theme = 'hextra'
 
 [services]
   [services.googleAnalytics]
-    ID = "G-MTW2ZB8K4E"
+    ID = "G-XXXXXXXXXX"  # 替换为你的Google Analytics ID
+
+[languages]
+  [languages.zh-cn]
+    languageName = "简体中文"
+    weight = 1
+  [languages.en]
+    languageName = "English"
+    weight = 2
 
 [params]
   [params.navbar]
@@ -35,10 +43,12 @@ theme = 'hextra'
 
 [menu]
   [[menu.main]]
+    identifier = "blog"
     name = "Blog"
     pageRef = "/"
     weight = 1
   [[menu.main]]
+    identifier = "about"
     name = "About"
     pageRef = "/about"
     weight = 2
@@ -51,3 +61,11 @@ theme = 'hextra'
     url = "https://github.com/myasuka/myasuka.github.io"
     weight = 4
     params = { icon = "github" }
+  [[menu.main]]
+    name = "Language Switcher"
+    weight = 5
+    params = { 
+      type = "language-switch",
+      label = true,
+      icon = "globe-alt"
+    }
