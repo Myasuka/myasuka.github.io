@@ -16,3 +16,14 @@
   border-radius: 50% !important;
   overflow: hidden !important;
 }
+
+/* Reduce font size of language switcher button */
+.hextra-language-switcher span {
+  font-size: 0.72rem !important; /* xs is 0.75rem, so 0.65rem is smaller */
+}
+
+/* Also reduce the overall button size slightly */
+.hextra-language-switcher {
+  padding: 0.05rem 0.05rem !important;
+  height: auto !important;
+}
