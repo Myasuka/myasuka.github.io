@@ -5,7 +5,7 @@ theme = 'hextra'
 
 [services]
   [services.googleAnalytics]
-    ID = "G-XXXXXXXXXX"  # 替换为你的Google Analytics ID
+    ID = "G-MTW2ZB8K4E"
 
 [languages]
   [languages.zh-cn]
@@ -25,6 +25,10 @@ theme = 'hextra'
       link = "/"
       width = 24
       height = 24
+
+[params.footer]
+  displayPoweredBy = true
+  displayCopyright = true
 
 [params.search]
   enable = true
