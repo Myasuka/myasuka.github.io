@@ -64,8 +64,4 @@ theme = 'hextra'
   [[menu.main]]
     name = "Language Switcher"
     weight = 5
-    params = { 
-      type = "language-switch",
-      label = true,
-      icon = "globe-alt"
-    }
+    params = { type = "language-switch", label = true, icon = "globe-alt" }
