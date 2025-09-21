@@ -2,6 +2,8 @@
 title: "Cost Issues of Near Real-Time Offline Data Warehouses - Incremental Data Warehouse Series Part I"
 date: "2025-09-14T07:05:00+08:00"
 draft: false
+tags: ["data warehouse", "stream processing", "batch processing", "Flink", "real-time computing", "offline computing"]
+type: "blog"
 ---
 
 {{< callout type="info" emoji="ℹ️" >}}

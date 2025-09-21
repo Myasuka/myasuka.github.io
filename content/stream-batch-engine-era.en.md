@@ -1,8 +1,10 @@
-+++
-title = "It's Time to Bring Unified Stream-Batch Processing Engines to Mass Adoption"
-date = "2025-09-13T10:00:00+08:00"
-draft = false
-+++
+---
+title: "It's Time to Bring Unified Stream-Batch Processing Engines to Mass Adoption"
+date: "2025-09-14T10:00:00+08:00"
+draft: false
+tags: ["data warehouse", "stream processing", "batch processing", "Flink", "real-time computing", "offline computing", "incremental computing"]
+type: "blog"
+---
 
 > **Note**: This article was translated from Chinese. Some technical terms and concepts may differ from the original English terminology.
 
@@ -26,7 +28,7 @@ Of course, controversy followed fame. At that time, there was significant debate
 
 I still remember the scene in the fall of 2013 when Reynold Xin brought that "Spark system 100 times faster than Hadoop" promotional display to our department for a presentation. Someone asked whether naming it this way was too clickbait since most scenarios couldn't achieve such high performance optimization. Looking back now, Databricks was indeed very skilled at technical marketing. Their later rivalry with Flink and public disputes with Snowflake were not surprising.
 
-![Very classic Hadoop vs Spark performance comparison chart](/images/spark-vs-hadoop-performance.png)
+![Very classic Hadoop vs Spark performance comparison chart](images/spark-vs-hadoop-performance.png)
 
 When I first encountered Spark, I was immediately attracted by its strong academic style and better usability compared to Hadoop. In my view, it had the following characteristics:
 
@@ -43,7 +45,7 @@ During my internship, there was also a discussion that, due to my incomplete und
 
 Later, we organized our ideas based on that distributed matrix library concept into a paper that was accepted by IEEE TPDS, a CCF-A class journal, leaving a footprint in my brief academic career. So I'm still very grateful to Spark - without this system, it would have been difficult to have the foundation tools for this paper.
 
-![As the meetup group shut down, the pictures and discussion records inside were also erased](/images/spark-meetup-history.png)
+![As the meetup group shut down, the pictures and discussion records inside were also erased](images/spark-meetup-history.png)
 
 ## Struggling: Spark Streaming, Love You But Can't Have You
 
@@ -63,7 +65,7 @@ After joining Alibaba, my first shock was that Alibaba already had Blink jobs ru
 
 1. Different design concepts bring different latency ceilings. Flink is streaming-first, so the operators of streaming jobs run continuously after obtaining resources. This allows for pipeline data transmission between operators, naturally achieving millisecond-level latency. Spark, on the other hand, builds streaming computing on a batch engine with a micro-batch architecture. Its operators still cut stages during map-reduce, so the next stage can only execute after the previous stage completes, naturally unable to achieve millisecond-level latency. Of course, this has some benefits. In situations where acceptable latency is possible, it can save some resources (since operators aren't always running). The figure below comes from an article Aljoscha wrote when doing API restructuring. When you're more oriented toward streaming computing, you should apply for more resources to keep operators running:
 
-![Batch and Streaming: Two sides of the same coin](/images/flink-streaming-batch-concept.png)
+![Batch and Streaming: Two sides of the same coin](images/flink-streaming-batch-concept.png)
 
 2. Different design concepts bring different shuffle implementations. Spark's shuffle comes from MapReduce's classic theory, where data transmission is cut into classic two phases: map-side disk writing and reduce-side disk reading based on key partitioning. The benefit is simple and stable implementation. Flink, being streaming-first, uses a pipeline mode where data transmission is directly connected through upstream and downstream task network buffers. The aggregation logic is mainly processed in the downstream reduce side (in Flink, this is the keyBy operator). The benefit is achieving low latency, but the downside is that the state implementation is more complex. Especially to achieve low latency, the state backend needs to make a trade-off between performance and capacity, which is why large-scale real-time jobs need to use RocksDB state-backend to solve the stability issues of on-heap memory-based state-backends. Another significant advantage of Flink's data exchange method is the natural implementation of backpressure mechanism. The network data buffer queues between upstream and downstream tasks form a classic producer-consumer model. When the downstream's consumption capacity is insufficient, the downstream cannot place data into the buffer queue, forming a backpressure state for the entire job, preventing continued data consumption from the source and avoiding job instability due to data surges. Spark still lacks a complete backpressure mechanism to improve stability.
 3. Lighter checkpoint mechanism. The restructured Spark structured streaming also introduced state to avoid the instability caused by persisting entire RDDs in the old version of Spark streaming. However, due to the micro-batch mechanism, these states still need to be committed and persisted at the end of each batch when checkpointing is enabled, unlike Flink's async checkpoint barrier, which can perform lightweight checkpoints at any time. This was one of Flink's early highlights in the academic circle.
@@ -80,11 +82,11 @@ In 2022, I left Alibaba, where I had worked for nearly five years, for personal 
 
 In Flink's early papers, it also claimed to be "Stream and Batch Processing in a Single Engine," but in reality, the two were actually two different sets of APIs: DataSet and DataStream (see figure below). For users, except for reducing the maintenance of a set of clusters, the coding experience is completely different, unable to maximize value in enterprises.
 
-![Early Flink API Architecture](/images/flink-old-api-architecture.png)
+![Early Flink API Architecture](images/flink-old-api-architecture.png)
 
 With Blink being donated to the Flink community, Liangzai's vision of "unified stream-batch" computing engines that he envisioned in 2015 began the restructuring journey. Currently, with the DataSet API being deprecated, the current API architecture is as shown in the figure below; for users, by using a unified DataStream or Table API, one set of code can implement batch processing and streaming processing optimized jobs (most can automatically infer execution mode through source). This reduces the technical stack that needs to be maintained, reduces the pressure of data caliber alignment, and greatly improves development efficiency. Especially in stream-batch fusion scenarios, such as index data generation scenarios, which require both previous full data and real-time data indexing, one set of APIs can greatly improve development efficiency.
 
-![Current Flink API Architecture](/images/flink-current-api-architecture.png)
+![Current Flink API Architecture](images/flink-current-api-architecture.png)
 
 ### Why Flink is Suitable for This Unified Stream-Batch Engine
 

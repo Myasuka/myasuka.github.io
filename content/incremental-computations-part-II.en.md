@@ -2,6 +2,8 @@
 title: "It's Time to Conclude the Discussion on Stream-Batch Unification in the Data Warehouse Field - Incremental Data Warehouse Series Part II"
 date: "2025-09-14T07:45:00+08:00"
 draft: false
+tags: ["data warehouse", "stream processing", "batch processing", "Flink", "real-time computing", "offline computing", "incremental computing"]
+type: "blog"
 ---
 
 {{< callout type="info" emoji="ℹ️" >}}
